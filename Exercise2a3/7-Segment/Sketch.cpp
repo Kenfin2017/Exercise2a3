@@ -7,7 +7,7 @@ Description:  Display 7-segment with different sequence
 /************************************************************************/
 #include <Arduino.h>
 
-void sevenSegWrite(byte i, byte* seq7);
+void SevenSegWrite(byte i, byte* seq7);
 
 #define PIN_A 2
 #define PIN_F 3
@@ -17,7 +17,7 @@ void sevenSegWrite(byte i, byte* seq7);
 #define PIN_G 7
 #define PIN_B 8
 
-byte seven_seg_three_and_E[2][7] = { 
+byte seven_seg_3_and_E[2][7] = { 
   { 1,0,0,1,1,1,1 }, // = 3
   { 1,1,1,1,0,1,0 } // = E
 };
@@ -62,7 +62,7 @@ void setup() {
   
 }
 // write to each pins on 7-segment
-void sevenSegWrite(byte i, byte seq [][7]) {
+void SevenSegWrite(byte i, byte seq [][7]) {
   byte pin = 2;
   // loop through all pins
   for (byte segCount = 0; segCount < 7; ++segCount) { 
@@ -75,40 +75,40 @@ void loop() {
   int delayTime = 700;
   for (byte j = 0; j < 3; j++){
     for (byte i = 0; i < 2; i++){
-      sevenSegWrite(i, seven_seg_three_and_E);
+      SevenSegWrite(i, seven_seg_3_and_E);
       delay(delayTime);
     }
     delayTime -= 200;// delay time reduce each loop
   }
-  delay(1000);
+  delay(2000);
 
   delayTime = 700;
   /* counter clockwise blink */ 
   for (byte j = 0; j < 3; j++){
     for (byte i = 0; i < 6; i++){
-      sevenSegWrite(i, seven_seg_counter_clockwise);
+      SevenSegWrite(i, seven_seg_counter_clockwise);
       delay(delayTime);
     }
     delayTime -= 200;
   }
-  delay(1000);
+  delay(2000);
   
   delayTime = 700;
   /* turning off one by one */
   for (byte j = 0; j < 3; j++){
     for (byte i = 0; i < 8; i++){
-      sevenSegWrite(i, seven_seg_on_off);
+      SevenSegWrite(i, seven_seg_on_off);
       delay(delayTime);
     }
     delayTime -= 200;
   }
-  delay(1000);
+  delay(2000);
   
   delayTime = 700;
   /* clockwise blink */
   for (byte j = 0; j < 3; j++){
     for (byte i = 0; i < 6; i++){
-      sevenSegWrite(i, seven_seg_clockwise);
+      SevenSegWrite(i, seven_seg_clockwise);
       delay(delayTime);
     }
     delayTime -= 200;
